@@ -18,8 +18,18 @@
 
 <body>
   <div id="app">
-    <div v-if="isUserName"><label for="userName">用户登录：</label><input id="userName" type="text" value="用户登录"><button @click="switcher()">切换登录方式</button></div>
-    <div v-else><label for="mail">邮箱登录：</label><input id="mail" type="text" value="邮箱登录"><button @click="switcher()">切换登录方式</button></div>
+    <!-- 当用户向输入框内输入了内容，切换时输入的内容不会清空。原因是vue内部创建了虚拟DOM，切换时不会使用新的input标签，而是在原来的标签进行修改，修改其他更新其他属性但不包括value，所以输入框内容不会变化。 -->
+    <!-- 如果要自动清空，方法一：用lable标签直接包裹input标签。方法二：给input添加单独的key。 -->
+    <div v-if="isUserName">
+      <label for="userName">用户登录：</label>
+      <input id="userName" type="text" value="用户登录" key="userName">
+      <button @click="switcher()">切换登录方式</button>
+    </div>
+    <div v-else>
+      <label for="mail">邮箱登录：</label>
+      <input id="mail" type="text" value="邮箱登录" key="mail">
+      <button @click="switcher()">切换登录方式</button>
+    </div>
   </div>
 
   <script>
