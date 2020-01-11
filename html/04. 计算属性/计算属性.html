@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{firstName + ' ' + lastName}}</h2>
+    <h2>{{firstName}} {{lastName}}</h2>
+    <h1>{{fullName}}</h1>
+    <h1>{{getFullName()}}</h1>
+    <h1>{{totalPrice}}</h1>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        firstName: 'Jensen',
+        lastName: 'Ackles',
+        bookList: [
+          { id: 01, name: '计算机组成原理', price: 88 },
+          { id: 02, name: 'Unix编程艺术', price: 110 },
+          { id: 03, name: 'JavaScript高级程序设计', price: 55 },
+          { id: 04, name: '操作系统', price: 68 }
+        ],
+      },
+      computed: {
+        //计算属性：注意起名与方法的区别，使用名词
+        fullName: function () {
+          return this.firstName + ' ' + this.lastName;
+        },
+        totalPrice: function () {
+          let result = 0;
+          for(let i = 0; i < this.bookList.length; i++) {
+            result += this.bookList[i].price;
+          }
+          return `总价格： ${result}`;
+        }
+      },
+      methods: {
+        getFullName () {
+          return this.firstName + ' ' + this.lastName;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

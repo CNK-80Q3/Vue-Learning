@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .red {
+      color: red;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in movies" :key="index" @click="turnRed(index)" :class="{red: currentIndex === index}">{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['猩球崛起', '星球大战', '夺命感应', '美国黑帮', '怒火救援'],
+        isRed: false,
+        currentIndex: 0
+      },
+      methods: {
+        turnRed: function (index) {
+          this.currentIndex = index;
+          console.log("click:", ++this.click, " index:", index);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

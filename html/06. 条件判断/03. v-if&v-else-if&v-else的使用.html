@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" @keyup="inputGrade()">
+    <h1 v-if="grade < 60">不及格</h1>
+    <h1 v-else-if="grade >= 60 && grade < 80">良好</h1>
+    <h1 v-else="grade >= 80">优秀</h1>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        grade: 0,
+
+      },
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

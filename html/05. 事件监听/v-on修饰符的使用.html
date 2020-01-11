@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!--1. stop修饰符的使用，阻止事件冒泡 -->
+    <div @click="divClick()" style="width: '200px'; background: '#eaeaea'">
+      阻止事件冒泡修饰符
+      <button @click.stop="btnClick()">btn</button >
+    </div>
+    <!--2. prevent修饰符的使用，阻止表单自动提交 -->
+    <div>
+      <form action="baidu">
+        <input type="submit" value="提交" @click.prevent="submitClick()">
+      </form>
+    </div>
+    <!--3. 监听键盘按键，默认监听所有按键，加修饰符监听指定按键 -->
+    <div>
+      <input type="text" @keyup.enter="keyUp()" value="keyUp">
+    </div>
+    <!-- 4. once修饰符的使用，只监听一次事件 -->
+    <div>
+      <button @click.once="clickOnce()">once修饰符</button>
+    </div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {
+        btnClick () {
+          console.log("btnClick");
+        },
+        divClick () {
+          console.log("divClick");
+        },
+        submitClick () {
+          console.log("submitClick!!!")
+        },
+        keyUp () {
+          console.log("keyUp!!!")
+        },
+        clickOnce () {
+          console.log("clickOnce!!!");
+          
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

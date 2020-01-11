@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{message}}</h1>
+    <h1 v-html="message"></h1>
+    <h1 v-text="message"></h1>
+    <h1 v-pre>{{直接显示不解析}}</h1>
+    <!-- vue解析之前标签有“v-cloak”属性，解析之后删除此属性，防止解析之前显示未解析的变量 -->
+    <h1 v-cloak>{{message}}</h1>
+    <ul>
+      <li v-for="item in movies">{{item}}</li>
+    </ul>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue ({
+      el: '#app',
+      data: {
+        message: '<a href="http://www.baidu.com" target="black">BaiDu</a>这是百度',
+        movies: ['a', 'b', 'c', 'd']
+      },
+      methods: {}
+    })
+  </script>
+</body>
+</html>

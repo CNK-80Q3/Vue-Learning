@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <a v-bind:href="baiduUrl" :target="baiduTarget" v-text="name"></a>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        name: 'Baidu',
+        baiduUrl: 'http://www.baidu.com',
+        baiduTarget: 'black'
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>
