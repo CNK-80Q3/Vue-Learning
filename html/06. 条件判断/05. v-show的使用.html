@@ -11,13 +11,18 @@
 
 <body>
   <div id="app">
-
+    <!-- v-if="false"的节点不会存在于文档中；v-show="false"的节点会设置display: none的样式。 -->
+    <!-- 所以在开发中，显示隐藏切换频繁的使用v-show，否则使用v-if。一般来说v-if使用多。 -->
+    <div id="vshow" v-show="isShow">vshow</div>
+    <div id="vif" v-if="isShow">vif</div>
   </div>
 
   <script>
     const app = new Vue({
       el: '#app',
-      data: {},
+      data: {
+        isShow: true
+      },
       computed: {},
       methods: {}
     });

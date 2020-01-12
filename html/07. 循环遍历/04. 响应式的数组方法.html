@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+    <button @click="btnPush()">Push</button>
+    <button @click="btnPop()">Pop</button>
+    <button @click="btnShift()">Shift</button>
+    <button @click="btnUnShift()">UnShift</button>
+    <button @click="btnSplice()">Splice</button>
+    <button @click="btnSort()">Sort</button>
+    <button @click="btnReverse()">Reverse</button>
+
+    <button @click="fixByIndex()">fixByIndex</button>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        list: ['a', 'b', 'c', 'z', 'd', 'h', 'e', 'f', 'g']
+      },
+      computed: {},
+      methods: {
+        //响应式操作：
+        //数组的push方法
+        btnPush() {
+          this.list.push('push');
+        },
+        //删除数组最后一个元素
+        btnPop() {
+          this.list.pop();
+        },
+        //删除数组第一个元素
+        btnShift() {
+          this.list.shift();
+        },
+        //在数组最前面添加元素
+        btnUnShift() {
+          this.list.unshift('Unshift');
+        },
+        //在数组中插入、删除、修改元素；参数意义：(开始位置, 删除元素数目， 添加的元素)
+        btnSplice() {
+          this.list.splice(2, 5, 'A', 'B', 'C');
+        },
+        //排序
+        btnSort() {
+          this.list.sort();
+        },
+        //反转数组
+        btnReverse() {
+          this.list.reverse();
+        },
+
+        //通过index修改数组，不能做到响应式，可以使用splice()或Vue提供的set(要修改的数组名, 索引值, 修改后的值)
+        fixByIndex() {
+          this.list[0] = 'A';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

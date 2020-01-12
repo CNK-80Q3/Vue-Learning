@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <table border="5">
+        <thead>
+          <tr>
+            <th v-for="item in tableHead" :key="item.id">{{item.name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(bookItem, index) in bookList">
+            <td>{{bookItem.id}}</td>
+            <td>{{bookItem.date}}</td>
+            <td>{{bookItem.name}}</td>
+            <td>{{bookItem.price | priceFilters}}</td>
+            <td>
+              <button @click="addNum(index)">+</button>
+              <input type="number" :value="bookItem.count">
+              <button @click="subNum(index)">-</button>
+            </td>
+            <td>
+              操作：<button @click="removeBook(index)">移除</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td v-if="bookList.length" colspan="6">总价格：{{computerPrice | priceFilters}}</td>
+            <td v-else>购物车为空</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        bookNum: 0,
+        totalPrice: 0,
+        tableHead: [
+          {
+            id: 0,
+            name: '编号'
+          },
+          {
+            id: 1,
+            name: '出版日期'
+          },
+          {
+            id: 2,
+            name: '书籍名称'
+          },
+          {
+            id: 3,
+            name: '价格'
+          },
+          {
+            id: 4,
+            name: '购买数量'
+          },
+          {
+            id: 5,
+            name: '操作'
+          },
+        ],
+        bookList: [
+          { id: 1, date: '2000-08', name: '计算机组成原理', price: 88.00, count: 0 },
+          { id: 2, date: '2012-09', name: 'Unix编程艺术', price: 110.00, count: 0 },
+          { id: 3, date: '2003-05', name: 'JavaScript高级程序设计', price: 55.50, count: 0 },
+          { id: 4, date: '2010-03', name: '操作系统', price: 68.50, count: 0 }
+        ],
+      },
+      computed: {
+        computerPrice() {
+          let total = this.totalPrice;
+          for (let i = 0; i < this.bookList.length; i++) {
+            total += this.bookList[i].price * this.bookList[i].count;
+          }
+          return total;
+        }
+      },
+      methods: {
+        addNum(index) {
+          let count = this.bookList[index].count;
+          this.bookList[index].count = ++count;
+          console.log(count);
+        },
+        subNum(index) {
+          let count = this.bookList[index].count;
+          if (count > 0)
+            this.bookList[index].count = --count;
+          console.log(count);
+        },
+        removeBook(index) {
+          this.bookList.splice(index, 1);
+        }
+      },
+      filters: {
+        //创建过滤器
+        priceFilters(price) {
+          return '￥' + price.toFixed(2);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

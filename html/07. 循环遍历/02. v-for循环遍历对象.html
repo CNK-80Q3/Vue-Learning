@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 只获取value -->
+    <div>
+      <ul>
+        <li v-for="item in bookInfo">{{item}}</li>
+      </ul>
+    </div>
+    <!-- 获取value和key，注意参数顺序(value, key) -->
+    <div>
+      <ul>
+        <li v-for="(value, key) in bookInfo">{{key}}: {{value}}</li>
+      </ul>
+    </div>
+      <!-- 获取value和key和index，注意参数顺序(value, key, index)，对象里index使用很少 -->
+    <div>
+      <ul>
+        <li v-for="(value, key, index) in bookInfo">{{index}}. {{key}}: {{value}}</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        bookInfo: { id: 01, name: '计算机组成原理', price: 88 }
+      },
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

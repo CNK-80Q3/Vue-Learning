@@ -11,13 +11,23 @@
 
 <body>
   <div id="app">
-
+    <div>movies:
+      <ul>
+        <li v-for="item in movies">{{item}}</li>
+      </ul>
+      <!-- 在便利的过程中获取索引值 -->
+      <ul>
+        <li v-for="(item, index) in movies">{{index}}. {{item}}</li>
+      </ul>
+    </div>
   </div>
 
   <script>
     const app = new Vue({
       el: '#app',
-      data: {},
+      data: {
+        movies: ['猩球崛起', '星球大战', '夺命感应', '美国黑帮', '怒火救援'],
+      },
       computed: {},
       methods: {}
     });

@@ -11,15 +11,16 @@
 
 <body>
   <div id="app">
-    <h1 v-if="isShow">{{message}}</h1>
+    <!-- Vue建议尽可能在使用 v-for 时提供 key attribute，除非遍历输出的 DOM 内容非常简单，因为添加与内容一一对应的key值，在插入值时可以提升性能 -->
+    <!-- key值不能绑定为index，最好是对象唯一的id或value值 -->
+    <div v-for="item in movies" :key="item">{{item}}</div>
   </div>
 
   <script>
     const app = new Vue({
       el: '#app',
       data: {
-        message: '满足条件渲染',
-        isShow: true
+        movies: ['猩球崛起', '星球大战', '夺命感应', '美国黑帮', '怒火救援']
       },
       computed: {},
       methods: {}
