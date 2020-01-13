@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script>
+    const numbers = [23, 45, 123, 456, 34, 100, 89, 5, 90, 101];
+    // //需求：对目标数组进行处理
+    // // 1. 过滤掉数组中小于100的数；
+    // let newNums1 = [];
+    // for (let i = 0; i < numbers.length; i++) {
+    //   if (numbers[i] >= 100) {
+    //     newNums1.push(numbers[i]);
+    //   }
+    // }
+    // console.log(newNums1);
+    // // 2. 对过滤后的数组的每一项乘2；
+    // let newNums2 = [];
+    // for (n of newNums1) {
+    //   newNums2.push(n * 2);
+    // }
+    // console.log(newNums2);
+    // // 3. 对处理后的数组中每一项进行求和；
+    // let sum = 0;
+    // for (n of newNums2) {
+    //   sum += n;
+    // }
+    // console.log(sum);
+
+    //使用高阶函数实现：
+    // // 1. filter函数 原理：回调函数返回true就将值加入新数组，返回false就不加入
+    // let newNums1 = numbers.filter(function (n) {
+    //   return n >= 100;
+    // })
+    // console.log(newNums1);
+    // // 2. map函数 原理：把返回值加入新数组
+    // let newNums2 = newNums1.map(function (n) {
+    //   return n * 2;
+    // })
+    // console.log(newNums2);
+    // // 3. reduce函数：对数组中所有项进行汇总 原理：处理前一个返回值和后一个返回值
+    // let sum = newNums2.reduce(function (pre, n) {
+    //   return pre + n;
+    // })
+
+    // 简化写法 1：
+    // let sum = numbers.filter(function (n) {
+    //   return n >= 100;
+    // }).map(function (n) {
+    //   return n * 2;
+    // }).reduce(function (pre, n) {
+    //   return pre + n;
+    // })
+    // 简化写法 2：
+    let sum = numbers.filter(n => n >= 100).map(n => n * 2).reduce((pre, n) => pre + n);
+    console.log(sum);
+    document.getElementById("app").innerHTML=`<div>数组：${numbers} <br/> 结果：${sum}</div>`;
+
+  </script>
+</body>
+
+</html>
