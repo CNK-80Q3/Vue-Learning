@@ -95,13 +95,15 @@
           //   total += this.bookList[i].price * this.bookList[i].count;
           // }
           //for of循环
-          for (item of this.bookList) {
-            total += item.price * item.count;
-          }
+          // for (item of this.bookList) {
+          //   total += item.price * item.count;
+          // }
           //编程范式：命令式编程、声明式编程
           //编程范式：面向对象编程（第一公民：对象）、函数式编程（第一公民：函数）
           //高阶函数：map、filter、reduce
-          return total;
+          return this.bookList.reduce(function (pre, book) {
+            return pre + book.price * book.count;
+          }, 0);//reduce函数需要穿两个参数：(回调函数，初始值)，其中回调函数也需要两个参数，上一次返回值和当前遍历到的值
         }
       },
       methods: {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 不加修饰符，随输入响应 -->
+    <input type="text" v-model="message">
+    <h1>
+      {{message}}
+    </h1>
+    <!-- lazy修饰符，只在按下enter或input失去焦点的时候响应 -->
+    <input type="text" v-model.lazy="messageLazy">
+    <h1>
+      {{messageLazy}}
+    </h1>
+    <!-- number修饰符，不加number修饰符，输入即便是数字但类型仍是string，加number修饰符保证输入后被绑定的变量是number类型 -->
+    <input type="number" v-model.number="messageNumber">
+    <h1>
+      {{typeof(messageNumber)}}
+    </h1>
+    <!-- trim修饰符，改变数据时清除字符串两边的空格 -->
+    <input type="text" v-model="messageTrim">
+    <h1>
+      {{messageTrim}}
+    </h1>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'HELLO',
+        messageLazy: 'Lazy',
+        messageNumber: '',
+        messageTrim: ''
+      },
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

@@ -11,10 +11,12 @@
 
 <body>
   <div id="app">
-    <input type="text" @keyup="inputGrade()">
-    <h1 v-if="grade < 60">不及格</h1>
+    <input type="number" @keyup.enter="inputGrade()" v-model="grade">
+    <h1 v-if="grade < 0">不能再低了！！！</h1>
+    <h1 v-else-if="grade < 60">不及格</h1>
     <h1 v-else-if="grade >= 60 && grade < 80">良好</h1>
-    <h1 v-else="grade >= 80">优秀</h1>
+    <h1 v-else-if="grade >= 80 && grade <= 100">优秀</h1>
+    <h1 v-else="grade > 100">考不了这么些个分！！！</h1>
   </div>
 
   <script>
@@ -22,10 +24,13 @@
       el: '#app',
       data: {
         grade: 0,
-
       },
       computed: {},
-      methods: {}
+      methods: {
+        inputGrade() {
+          console.log(this.grade);
+        }
+      }
     });
   </script>
 </body>

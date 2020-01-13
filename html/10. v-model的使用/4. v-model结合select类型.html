@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 单选 -->
+    <select name="fruit" v-model="fruit">
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="榴莲">榴莲</option>
+      <option value="橙子">橙子</option>
+    </select>
+    <h1>您选择的水果是：{{fruit}}</h1>
+    <!-- 多选 --按住command键 -->
+    <select name="hobbies" v-model="hobbies" multiple>
+      <option value="篮球">篮球</option>
+      <option value="足球">足球</option>
+      <option value="跳舞">跳舞</option>
+      <option value="阅读">阅读</option>
+    </select>
+    <h1>您的爱好是：{{hobbies}}</h1>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fruit: '香蕉',
+        hobbies: []
+      },
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

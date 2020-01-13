@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-model实现双向绑定 -->
+    1. <input type="text" v-model="inputValue1" @keyup.enter="logger()">{{inputValue1}}<br>
+    <!-- 实现原理：v-bind向value绑定一个变量，实现动态显示渲染该变量的值，然后使用v-on监听input事件一旦输入新的值即将其赋给变量 -->
+    2. <input type="text" :value="inputValue2" @input="valueChange">{{inputValue2}}<br>
+    3. <input type="text" :value="inputValue3" @input="inputValue3 = $event.target.value">{{inputValue3}}<br>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        inputValue1: 'HELLO',
+        inputValue2: 'HELLO',
+        inputValue3: 'HELLO',
+      },
+      computed: {},
+      methods: {
+        logger() {
+          // console.log(this.inputValue1);
+        },
+        valueChange(event) {
+          this.inputValue2 = event.target.value;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

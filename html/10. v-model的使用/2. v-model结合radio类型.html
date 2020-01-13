@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <label for="male">
+      <!-- 当v-model绑定同一个变量的时候两个radio自动互斥，即不能同时选择，所以可以省略name属性 -->
+      <input type="radio" name="sex" id="male" value="男" v-model="sex">
+    </label>
+    <label for="female">
+      <input type="radio" name="sex" id="female" value="女" v-model="sex">
+    </label>
+    <h1>性别：{{sex}}</h1>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        sex: '男'
+      },
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

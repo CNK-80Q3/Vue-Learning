@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+  <script src="../../vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- checkbox单选框，绑定布尔类型 -->
+    <label for="license">
+      <input type="checkbox" name="license" id="license" value="agreement" v-model="isAgree">已阅读并同意该协议
+    </label>
+    <h1>{{isAgree? '同意' : '不同意'}}</h1>
+    <button :disabled="!isAgree">下一步</button>
+    <br>
+    
+    <!-- checkbox复选框，绑定数组类型 -->
+    <label for="basketball"><input type="checkbox" name="basketball" id="basketball" value="篮球" v-model="hobbies">篮球</label>
+    <label for="football"><input type="checkbox" name="football" id="football" value="足球" v-model="hobbies">足球</label>
+    <label for="dance"><input type="checkbox" name="dance" id="dance" value="跳舞" v-model="hobbies">跳舞</label>
+    <label for="read"><input type="checkbox" name="read" id="read" value="阅读" v-model="hobbies">阅读</label>
+    <h1>你的爱好：{{hobbies}}</h1>
+    <!-- Vue中的值绑定 -->
+    <label v-for="(item, index) in originFruits" :key="index" :for="item">
+      <input type="checkbox" :id="item" :value="item" v-model="fruits">{{item}}
+    </label>
+    <h1>你选择的水果：{{fruits}}</h1>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        agreement: '已阅读并同意该协议',
+        isAgree: false,
+        hobbies: [],
+        originFruits: ['苹果', '香蕉', '榴莲', '橙子'],
+        fruits: []
+      },
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>
