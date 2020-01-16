@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <!-- Vue@2.6废弃了slot和slot-scope的写法，改用v-slot -->
+    <!-- 作用域插槽：父组件对子组件的展示方式不满意，获取到子组件的值并以自己的方式展示 -->
+    <cpn>
+      <template slot-scope="slot">
+        <span>{{slot.data1.join(" - ")}}</div>
+        </template>
+      </cpn>
+      <cpn>
+        <div slot-scope="slot">
+          <span>{{slot.data1.join(" * ")}}</div>
+      </div>
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <slot :data1="pLanguage">
+        <ul>
+          <li v-for="item in pLanguage">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              pLanguage: ['JavaScript', 'Python', 'Golang', 'Jave', 'C++']
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

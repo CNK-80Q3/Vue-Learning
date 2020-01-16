@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn>
+      <a href="">no name slot1</a>
+      <button slot="left">=</button>
+      <span slot="center">标题</span>
+      <button slot="right">+</button>
+      <a href="">no name slot2</a>
+    </cpn>
+  </div>
+
+  <template id="cpn-with-named-slot">
+    <div>
+      <slot></slot>
+      <slot name="left"></slot>
+      <slot name="center"></slot>
+      <slot name="right"></slot>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn-with-named-slot'
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {},
+      components: {
+        cpn
+      }
+    });
+  </script>
+</body>
+
+</html>

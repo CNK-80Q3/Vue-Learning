@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1. 插槽的基本使用 -->
+    <h1>
+      组件1：
+    </h1>
+    <cpn><input type="text" value="插件3"></cpn>
+    <!-- 2. 插槽里插入多个插件 -->
+    <h1>
+      组件2：
+    </h1>
+    <cpn><span>插件1</span><button>插件2</button></cpn>
+    <!-- 3. 不写插件，插槽使用默认插件 -->
+    <h1>
+      组件3：
+    </h1>
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn-with-slot">
+    <div>
+      <h3>标题</h3>
+      <slot><button>默认插件</button></slot>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn-with-slot',
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn
+      }
+    });
+  </script>
+</body>
+
+</html>

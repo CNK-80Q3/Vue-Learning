@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 这里isShow的作用域是Vue.app -->
+    <cpn v-show="isShow"></cpn>
+  </div>
+
+  <template id="cpn">
+    <!-- 这里isShow的作用域是cpn，作用域取决于最外层模板 -->
+    <div v-show="isShow">
+      TEXT TEXT TEXT
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      data() {
+        return {
+          isShow: false
+        }
+      }
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      },
+      components: {
+        cpn,
+      }
+    });
+  </script>
+
+</body>
+
+</html>
