@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 此处不绑定父组件的值的话就显示定义的默认值，此处没有绑定movies -->
+    <father :childmessage="message" :props5="alert"></father>
+  </div>
+
+  <template id="father">
+    <div>
+      <h1>{{childmovies}}</h1>
+      <li>{{childmessage}}</li>
+      <h2>{{props5}}</h2>
+      <ul>
+        <li v-for="(item, index) in childmovies" :key="item">{{index}}. {{item}}</li>
+      </ul>
+    </div>
+  </template>
+
+  <script src="../../vue.js"></script>
+  <script>
+    // ！！！本例子是Vue实例向father组件传值
+
+    father = {
+      template: '#father',
+      // props有几种写法
+      // 1. 数组语法：
+      // props: ['childmovies'],
+
+      props: {
+        // 2.1. 对象语法 基础的类型检查（'null'匹配任何类型）：
+        // childmovies: Array,
+        // 2.2. 也可以是自定义类型：
+        // childmovies： Movies,
+        // 2.3. 有多个可能的类型：
+        // childmovies: [Array, String, Object]
+        // 3. 对象写法 提供默认值--类型为数组或对象
+        childmovies: {
+          type: Array,
+          // 错误写法：
+          // default: ['1', '2', '3']
+          // 当类型是对象或数组时，默认值必须是一个函数
+          default() {
+            return ['1', '2', '3']
+          }
+        },
+        // 4. 对象写法 提供默认值--类型String、Number等
+        childmessage: {
+          type: String,
+          default: 'message：默认值',
+          // require为true表示childmessage是必须传递的值，不传就报错
+          required: false
+        },
+        // 5. 自定义验证函数
+        props5: {
+          validator: function (value) {
+            // 匹配下列字符串中的一个，如果都不匹配会报错
+            return ['success', 'warning', 'debugger'].indexOf(value) !== -1;
+          }
+        }
+      },
+
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['猩球崛起', '星球大战', '夺命感应', '美国黑帮', '怒火救援'],
+        message: 'This is a message',
+        alert: 'warning'
+      },
+      computed: {},
+      methods: {},
+      components: {
+        // 'father': father,
+        // father: father,
+        // 对象字面量写法
+        father
+      }
+    });
+  </script>
+</body>
+
+</html>

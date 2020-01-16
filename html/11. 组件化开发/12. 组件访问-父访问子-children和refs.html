@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref="cpnRef"></cpn>
+    <button @click="btnClick">button</button>
+  </div>
+
+  <template id="cpn">
+    <div>
+      我是子组件
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        btnClick() {
+          // 1. $children，只有需要拿到所有子组件才采用
+          console.log(this.$children);
+          // this.$children[0].showMessage();//不推荐通过下标值获取
+          for (item of this.$children) {
+            item.showMessage();
+            console.log("通过$childeren访问子组件");
+            console.log(item.message);
+          }
+          // 2. $refs，根据ref属性拿到子组件，一般使用$refs很多
+          console.log(this.$refs);
+          // 给组件标签添加ref属性后：
+          console.log("通过$refs访问子组件")
+          console.log(this.$refs.cpnRef.message);
+          this.$refs.cpnRef.showMessage();
+        }
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              message: 'this is message'
+            }
+          },
+          methods: {
+            showMessage() {
+              console.log("show message");
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+
+</head>
+
+<body>
+  <div id="app">
+    <!-- 3. 使用组件 -->
+    <cpn-name></cpn-name>
+    <cpn-name></cpn-name>
+  </div>
+
+  <script src="../../vue.js"></script>
+  <script>
+    // 组件化的三步骤（前两步必须写在创建Vue实例之前）：
+    // 1. 创建组件构造器对象
+    const cpnConstructor = Vue.extend({
+      //模板使用 ``比使用''的优势：可以不用使用 +号 直接换行
+      template: `
+      <div>
+        <h1>标题</h1>
+        <p>这里是内容</p>
+        <p>这里是内容</p>
+      </div>`
+    })
+    // 2. 注册组件
+    Vue.component('cpn-name', cpnConstructor)
+    // 3. 使用组件
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

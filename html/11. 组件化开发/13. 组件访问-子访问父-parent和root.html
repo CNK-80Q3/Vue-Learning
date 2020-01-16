@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+  </div>
+  
+  <template id="ccpn">
+    <div>
+      我是ccpn
+      <button @click="ccpnClick">ccpn</button>
+    </div>
+  </template>
+
+  <template id="cpn">
+    <div>
+      我是cpn
+      <ccpn></ccpn>
+    </div>
+  </template>
+
+  <script src="../../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        vueMessage: 'vueMessage'
+      },
+      methods: {},
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              cpnMessage: 'cpnMessage'
+            }
+          },
+          components: {
+            ccpn: {
+            template: '#ccpn',
+            methods: {
+              ccpnClick() {
+                // 1. $parent访问父组件，几乎不用
+                // console.log("ccpnClick   " + this.$parent.cpnMessage);
+                // 2. $root访问Vue实例，使用较少
+                console.log(this.$root.vueMessage);
+              }
+            }
+          }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

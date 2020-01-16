@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn :num1="number1" :num2="number2" @get-input1="getInput1" @get-input2="getInput2" />
+  </div>
+
+  <template id="cpn">
+    <div>
+      <input type="number" v-model="numData1" @input="onInput1">
+      <h1>{{numData1}}</h1>
+      <h1>props: {{num1}}</h1>
+      <input type="number" v-model="numData2" @input="onInput2">
+      <h1>{{numData2}}</h1>
+      <h1>props: {{num2}}</h1>
+    </div>
+  </template>
+  <script src="../../vue.js"></script>
+  <script>
+    // 创建组件构造器
+    const cpn = {
+      template: '#cpn',
+      props: {
+        num1: Number,
+        num2: Number
+      },
+      // props里传的值不能直接修改，要拷贝到data或computed中修改
+      data() {
+        return {
+          numData1: this.num1,
+          numData2: this.num2
+        }
+      },
+      methods: {
+        onInput1(numData1) {
+          this.numData1 = event.target.value;
+          this.numData2 = this.numData1 * 2;
+          this.$emit('get-input1', this.numData1, this.numData2);
+        },
+        onInput2(numData1) {
+          this.numData1 = this.numData2 * 0.5;
+          this.numData2 = event.target.value;
+          this.$emit('get-input2', this.numData1, this.numData2);
+        },
+      }
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        number1: 1,
+        number2: 2
+      },
+      components: {
+        cpn
+      },
+      methods: {
+        getInput1(value1, value2) {
+          this.number1 = parseFloat(value1);
+          this.number2 = parseFloat(value2);
+          console.log("app-num1: " + this.number1 + "app-num2: " + this.number2);
+        },
+        getInput2(value1, value2) {
+          this.number1 = parseFloat(value1);
+          this.number2 = parseFloat(value2);
+          console.log("app-num1: " +this.number1 + "app-num2: " +this.number2);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

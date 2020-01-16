@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+  </div>
+
+  <template id="counterTemp">
+    <div>
+      <button @click="increase">+</button>
+      <h1>{{counterLog}}</h1>
+      <button @click="decrease">-</button>
+    </div>
+  </template>
+
+  <script src="../../vue.js"></script>
+  <script>
+    // 计数器抽离为一个组件
+    Vue.component('counter', {
+      template: '#counterTemp',
+      // 在组件里data使用函数的原因：
+      // 如果使用对象的话组件之间使用的counterLog都将指向一个值，而使用函数，每次调用data函数的时候都会return一个新的对象，使得组件之间不会相互影响
+      // 一个组件改变，其他会受到影响，所以Vue直接禁止了对象的写法
+      data() {
+        return {
+          counterLog: 0
+        }
+      },
+      methods: {
+        increase() {
+          this.counterLog += 1;
+        },
+        decrease() {
+          this.counterLog -= 1;
+        }
+      }
+    })
+    
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

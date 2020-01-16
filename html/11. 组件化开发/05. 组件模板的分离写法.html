@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+  </div>
+  <script type="text/x-template" id="cpn1Temp">
+    <div>
+      <h1>组件1</h1>
+      <p>script标签定义</p>
+    </div>
+  </script>
+  <template id="cpn2Temp">
+    <div>
+      <h1>组件2</h1>
+      <p>template标签定义</p>
+    </div>
+  </template>
+
+  <script src="../../vue.js"></script>
+  <script>
+    // 普通方式定义
+    // Vue.component('cpn1', {
+    //   template: `
+    //   <div>
+    //     <h1>组件1</h1>
+    //     <p>这是全局组件</p>
+    //   </div>`,
+    // })
+
+    // 分离模板，方法一：script标签定义
+    Vue.component('cpn1', {
+      template: '#cpn1Temp'
+    })
+    // 分离模板，方法二：template标签定义
+    Vue.component('cpn2', {
+      template: '#cpn2Temp'
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

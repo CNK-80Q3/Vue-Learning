@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+  </div>
+
+  <template id="cpn1Temp">
+    <div>
+      <h1>组件中的数据存放</h1>
+      <p>{{message}}</p>
+    </div>
+  </template>
+
+  <script src="../../vue.js"></script>
+  <script>
+    // 组件中的数据存放在data函数中，该函数返回一个对象，数据放在该对象中
+    Vue.component('cpn1', {
+      template: '#cpn1Temp',
+      data() {
+        return {
+          message: '组件中的数据存放在data函数中，该函数返回一个对象，数据放在该对象中。'
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

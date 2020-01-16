@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn2></cpn2>
+    <cpn1></cpn1>
+  </div>
+  
+  <script src="../../vue.js"></script>
+  <script>
+    // 创建两个组件
+    const cpnC1 = Vue.extend({
+      template: `
+      <div>
+        <h1>组件1</h1>
+        <p>这是子组件</p>
+      </div>`,
+    })
+    const cpnC2 = Vue.extend({
+      template: `
+      <div>
+        <h1>组件2</h1>
+        <p>这是父组件</p>
+        <cpn1></cpn1>
+      </div>`,
+      components: {
+        cpn1: cpnC1
+      }
+      //除非在Vue实例里在册，否则cpn1组件不能再在Vue实例里使用，因为在使用之前cpnC2的模板已经解析完毕了，即自定义组件标签已经解析成DOM文档，所以Vue实例不能查询到cpnC2里注册的cpnC1是什么
+    })
+
+    // 其实Vue实例也可以看做一个组件（root组件），他也可以添加template
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {},
+      components: {
+        cpn2: cpnC2,
+        // 除非在这里注册cpn1，否则Vue实例中不能使用该组件(简言之：跨辈分注册不管用)
+        cpn1: cpnC2
+      }
+    });
+  </script>
+</body>
+
+</html>

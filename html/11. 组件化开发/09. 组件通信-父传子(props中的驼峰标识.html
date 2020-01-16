@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 绑定数据不支持驼峰写法，需要时要用“-”连接的写法 -->
+    <cpn :child-movies="movies" :child-my-message="myMessage"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      {{childMovies}}
+      <br>
+      {{childMyMessage}}
+    </div>
+  </template>
+
+  <script src="../../vue.js"></script>
+  <script>
+
+    const cpn = {
+      template: '#cpn',
+      props: {
+        childMovies: {
+          type: Array,
+          requested: true
+        },
+        childMyMessage: String
+      }
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['猩球崛起', '星球大战', '夺命感应', '美国黑帮', '怒火救援'],
+        myMessage: 'This is a message',
+      },
+      components: {
+        cpn
+      }
+    });
+  </script>
+</body>
+
+</html>

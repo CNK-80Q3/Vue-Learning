@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <newcpn></newcpn>
+    <newcpn></newcpn>
+  </div>
+  <div id="app2">
+    <newcpn></newcpn>
+    <newcpn></newcpn>
+  </div>
+  
+  <script src="../../vue.js"></script>
+  <script>
+    const newCpn = Vue.extend({
+      template: `
+      <div>
+        <h1>标题</h1>
+        <p>这里是内容</p>
+        <p>这里是内容</p>
+      </div>`
+    })
+
+    //此处注册的组件是全局组件
+    Vue.component('newcpn', newCpn);
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      computed: {},
+      methods: {},
+      // 此处注册的为局部组件，局部组件不会再其他Vue实例里渲染
+      components: {
+        // newcpn是使用组件时的标签名，newCpn是组件构造器名
+        newcpn: newCpn
+      }
+    });
+    const app2 = new Vue({
+      el: '#app2'
+    })
+  </script>
+</body>
+
+</html>
