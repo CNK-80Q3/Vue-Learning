@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script>
+    // 箭头函数：也是一种定义函数的方式
+    // 1. 定义函数的方式：function
+    const fn1 = function () {
+
+    }
+
+    const obj1 = {
+      fn2: function () {
+
+      },
+    // 2. 对象字面量方式
+      fn3() {
+
+      }
+    }
+    // ES6中的箭头函数
+    // const fn4 = () => {}
+    // 一个参数可以省略括号
+    // const fn4 = parameter => {}
+    // 一行代码可以省略大括号，会自动返回值
+    // const fn4 = (a, b) => a + b
+    // 没有返回值的话，返回值为undefined
+    const fn4 = a => console.log(a)
+  </script>
+</body>
+
+</html>

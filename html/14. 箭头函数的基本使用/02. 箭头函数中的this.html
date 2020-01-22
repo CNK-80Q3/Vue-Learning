@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script>
+    // 什么时候使用箭头函数？// 把一个函数作为参数传入另一个函数时
+    // setTimeout(function () {
+    //   console.log(this)
+    // }, 1000)
+
+    // setTimeout(() => {
+    //   console.log(this)
+    // }, 1000);
+
+    // const obj = {
+    //   fn1() {
+    //     setTimeout(function () {
+    //       console.log(this)
+    //     }, 1000)
+    //   },
+    //   fn2() {
+    //     setTimeout(() => {
+    //       console.log(this)
+    //     }, 1000);
+    //   }
+    // }
+    // obj.fn1()     //this指向window对象
+    // obj.fn2()    //this指向obj
+    // 结论：箭头函数中的this引用的是最近作用域中的this，普通方式定义的函数this必然指向window对象
+
+    // 箭头函数this如何查找？  --向外层作用域一层一层查找，直到有this定义
+
+
+    // 题目：
+    const obj = {
+      fn1() {
+        setTimeout(function () {
+          setTimeout(function () {
+            console.log(this)
+          }, 1000),  //window
+
+            setTimeout(() => {
+              console.log(this)
+            }, 1000)  //window
+        }, 1000)
+      },
+
+      fn2() {
+        setTimeout(() => {
+          setTimeout(function () {
+            console.log(this)
+          }, 1000),   //window
+
+            setTimeout(() => {
+              console.log(this)
+            }, 1000)  //obj
+        }, 1000);
+      }
+    }
+    obj.fn1()
+    obj.fn2()
+
+  </script>
+</body>
+
+</html>
