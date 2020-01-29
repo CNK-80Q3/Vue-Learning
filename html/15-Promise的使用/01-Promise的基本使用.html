@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // // 使用setTimeout异步函数
+    // setTimeout(() => {
+    //   const message = '~'
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    // }, 1000)
+
+    // // 1. 回调地狱
+    // new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     const message = 'Hello'
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     setTimeout(() => {
+    //       const message = 'Worse'
+    //       console.log(message)
+    //       console.log(message)
+    //       console.log(message)
+    //       console.log(message)
+    //       console.log(message)
+    //       console.log(message)
+    //       setTimeout(() => {
+    //         const message = 'World'
+    //         console.log(message)
+    //         console.log(message)
+    //         console.log(message)
+    //         console.log(message)
+    //         console.log(message)
+    //         console.log(message)
+    //       }, 1000)
+    //     }, 1000)
+    //   }, 1000)
+    // })
+
+    // // 2. 链式编程，使用resolve()调用then
+    // new Promise((resolve, reject) => {
+    //   // 第一次网络请求代码
+    //   setTimeout(() => {
+    //     resolve()
+    //   }, 5000)
+    // }).then(() => {
+    //   // 第一次处理代码
+    //   const message = 'Hey'
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+    //   console.log(message)
+
+    //   return new Promise((res, rej) => {
+    //     // 第二次网路请求代码
+    //     setTimeout(() => {
+    //       res()
+    //     }, 5000)
+    //   }).then(() => {
+    //     // 第二次处理代码
+    //     const message = 'Best'
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+    //     console.log(message)
+
+    //     return new Promise((res, rej) => {
+    //       // 第三次网络请求代码
+    //       setTimeout(() => {
+    //         res()
+    //       }, 5000)
+    //     }).then(() => {
+    //       // 第三次处理代码
+    //       const message = 'World'
+    //       console.log(message);
+    //       console.log(message);
+    //       console.log(message);
+    //       console.log(message);
+    //       console.log(message);
+    //       console.log(message);
+    //     })
+    //   })
+    // })
+
+    // 什么时候会用到Promise？
+    // 一般是有异步操作时使用Promise对这个异步操作进行封装
+
+    // new -> 构造函数（1、保存了一些状态信息 2、执行传入的函数）
+    // 在执行传入的回调函数时，会传入两个参数，resolve、reject，它们本身也是两个函数
+
+    // Promise的三种状态：
+    // 1. peding：等待状态，比如正在进行网络请求，或定时器没有到时间；
+    // 2. fulfill： 满足状态，当我们主动调用了resolve时，就处于该状态，并会回调.then()；
+    // 3. reject： 拒绝状态，当我们主动调用了reject时，就处于该状态，并会回调.catch()；
+
+  </script>
+</body>
+
+</html>

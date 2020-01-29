@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 两种处理形式：
+    // 1、第一种
+    new Promise((res, rej) => {
+      setTimeout(() => {
+        // 请求成功调用resolve()
+        // res()
+        // 请求失败调用reject()
+        rej()
+      }, 3000)
+    }).then(data => {
+      console.log(data + ' success!!!')
+    }).catch(err => {
+      console.log(err + ' err message')
+    })
+
+    // 2、第二种（省略catch()，都写在then()里面）
+    new Promise((res, rej) => {
+      setTimeout(() => {
+        // res('success message!!!')
+        rej('error message!!!')
+      }, 1000)
+    }).then((
+      data => {
+        console.log(data)
+      }),
+      err => {
+        console.log(err)
+      })
+
+  </script>
+</body>
+
+</html>

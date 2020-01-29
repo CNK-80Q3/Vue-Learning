@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 要求：
+    // wrapped into
+    // 网络请求：aaa -> 自己处理（10行）
+    // 处理：aaa111 -> 自己处理（10行）
+    // 处理：aaa111222 -> 自己处理（10行）
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('aaa')
+      }, 1000)
+    }).then(res => {
+      // 1. 自己处理十行代码
+      console.log(res, "第一层的十行代码处理。。。")
+
+      // 2. 对结果进行第一次处理
+      return new Promise(resolve => {
+        resolve(res + '111')
+      }).then(res => {
+        console.log(res, "第二层的十行代码处理。。。")
+
+        // 3. 对结果进行第二次处理
+        return new Promise(resolve => {
+          resolve(res + '222')
+        })
+      }).then(res => {
+        console.log(res, "第三层的十行代码处理。。。")
+      })
+    })
+
+    // 简化（直接返回Promise对象并调用其resolve()方法）：
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('aaa')
+      }, 2000)
+    }).then(res => {
+      console.log(res + "第一层十行代码处理")
+
+      return Promise.resolve(res + '111')
+    }).then(res => {
+      console.log(res, "第二层十行代码的处理")
+
+      return Promise.resolve(res + '222')
+    }).then(res => {
+      console.log(res, "第三层十行代码的处理")
+    })
+
+    // 再简化（直接省略Promise，让其内部进行处理）：
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('aaa')
+      }, 3000)
+    }).then(res => {
+      console.log(res, "第一层十行代码的处理")
+
+      return res + '111'
+    }).then(res => {
+      console.log(res, "第二层十行代码的处理")
+
+      return res + '222'
+    }).then(res => {
+      console.log(res, "第三层十行代码的处理")
+    })
+  </script>
+</body>
+
+</html>

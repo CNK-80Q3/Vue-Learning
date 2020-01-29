@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // all里面传的是一个数组（可迭代对象），
+    // 两个网络请求都完成的话执行.then()
+    Promise.all([
+      // 网络请求一：
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('result1')
+        }, 1000)
+      }),
+
+      // 网络请求二：
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('result2')
+        }, 2000)
+      })
+    ]).then(results => {
+      console.log(results)
+    })
+
+  </script>
+</body>
+
+</html>

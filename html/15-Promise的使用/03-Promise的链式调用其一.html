@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 链式编程，使用resolve()调用then
+    // 普通写法
+    new Promise((resolve, reject) => {
+      // 第一次网络请求代码
+      setTimeout(() => {
+        resolve()
+      }, 5000)
+    }).then(() => {
+      // 第一次处理代码
+      const message = 'Hey'
+      console.log(message)
+      console.log(message)
+      console.log(message)
+      console.log(message)
+      console.log(message)
+      console.log(message)
+
+      return new Promise((res, rej) => {
+        // 第二次网路请求代码
+        setTimeout(() => {
+          res()
+        }, 5000)
+      }).then(() => {
+        // 第二次处理代码
+        const message = 'Best'
+        console.log(message)
+        console.log(message)
+        console.log(message)
+        console.log(message)
+        console.log(message)
+        console.log(message)
+
+        return new Promise((res, rej) => {
+          // 第三次网络请求代码
+          setTimeout(() => {
+            res()
+          }, 5000)
+        }).then(() => {
+          // 第三次处理代码
+          const message = 'World'
+          console.log(message);
+          console.log(message);
+          console.log(message);
+          console.log(message);
+          console.log(message);
+          console.log(message);
+        })
+      })
+    })
+
+  </script>
+</body>
+
+</html>
