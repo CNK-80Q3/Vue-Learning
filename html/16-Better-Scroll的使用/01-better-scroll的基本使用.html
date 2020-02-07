@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Document</title>
+</head>
+<style>
+  .better-scroll {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    color: white;
+  }
+</style>
+
+<body>
+  <div id="html">
+    <div class="better-scroll">
+      <ul>
+        <li>scroll1</li>
+        <li>scroll2</li>
+        <li>scroll3</li>
+        <li>scroll4</li>
+        <li>scroll5</li>
+        <li>scroll6</li>
+        <li>scroll7</li>
+        <li>scroll8</li>
+        <li>scroll9</li>
+        <li>scroll10</li>
+        <li>scroll11</li>
+        <li>scroll12</li>
+        <li>scroll13</li>
+        <li>scroll14</li>
+        <li>scroll15</li>
+        <li>scroll16</li>
+        <li>scroll17</li>
+        <li>scroll18</li>
+        <li>scroll19</li>
+        <li>scroll20</li>
+        <li>scroll21</li>
+        <li>scroll22</li>
+        <li>scroll23</li>
+        <li>scroll24</li>
+        <li>scroll25</li>
+        <li>scroll26</li>
+        <li>scroll27</li>
+        <li>scroll28</li>
+        <li>scroll29</li>
+        <li>scroll30</li>
+        <li>scroll31</li>
+        <li>scroll32</li>
+        <li>scroll33</li>
+        <li>scroll34</li>
+        <li>scroll35</li>
+        <li>scroll36</li>
+        <li>scroll37</li>
+        <li>scroll38</li>
+        <li>scroll39</li>
+        <li>scroll40</li>
+        <li>scroll41</li>
+        <li>scroll42</li>
+        <li>scroll43</li>
+        <li>scroll44</li>
+        <li>scroll45</li>
+        <li>scroll46</li>
+        <li>scroll47</li>
+        <li>scroll48</li>
+        <li>scroll49</li>
+        <li>scroll50</li>
+        <li>scroll51</li>
+        <li>scroll52</li>
+        <li>scroll53</li>
+        <li>scroll54</li>
+        <li>scroll55</li>
+        <li>scroll56</li>
+        <li>scroll57</li>
+        <li>scroll58</li>
+        <li>scroll59</li>
+        <li>scroll60</li>
+        <li>scroll61</li>
+        <li>scroll62</li>
+        <li>scroll63</li>
+        <li>scroll64</li>
+        <li>scroll65</li>
+        <li>scroll66</li>
+        <li>scroll67</li>
+        <li>scroll68</li>
+        <li>scroll69</li>
+        <li>scroll70</li>
+        <li>scroll71</li>
+        <li>scroll72</li>
+        <li>scroll73</li>
+        <li>scroll74</li>
+        <li>scroll75</li>
+        <li>scroll76</li>
+        <li>scroll77</li>
+        <li>scroll78</li>
+        <li>scroll79</li>
+        <li>scroll80</li>
+        <li>scroll81</li>
+        <li>scroll82</li>
+        <li>scroll83</li>
+        <li>scroll84</li>
+        <li>scroll85</li>
+        <li>scroll86</li>
+        <li>scroll87</li>
+        <li>scroll88</li>
+        <li>scroll89</li>
+        <li>scroll90</li>
+        <li>scroll91</li>
+        <li>scroll92</li>
+        <li>scroll93</li>
+        <li>scroll94</li>
+        <li>scroll95</li>
+        <li>scroll96</li>
+        <li>scroll97</li>
+        <li>scroll98</li>
+        <li>scroll99</li>
+        <li>scroll100</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="./bscroll.js"></script>
+  <script>
+    // 默认不传第二个参数时是不监测实时位置的，要实现实时监测需要传入第二个参数，类型是一个对象
+
+    // 当probeType为0时不监测，
+    // probeType: 1 ：监测手指按下去不抬起来的滚动（如果手指抬起来就不返回监测结果）
+    // probeType: 1 ：监测滚动（手指抬起也返回检测结果，但不包括滚动惯性部分）
+    // probeType: 1 ：监测包括惯性部分的滚动
+    let wrapper = document.querySelector('.better-scroll')
+    const bscroll = new BScroll(wrapper, {
+      probeType: 1,
+      // 上拉刷新
+      pullUpLoad: true
+    })
+    console.log(bscroll)
+    bscroll.on('scroll', (position) => {
+      // console.log(position)
+    })
+    // 上拉刷新
+    bscroll.on('pullingUp', () => {
+      // 上拉刷新在新数据请求并被更新到页面之前只会执行一次，之后需要调用 .finishPullUp 结束上一次上拉刷新后，才能进行下一次
+      console.log('上拉刷新')
+      setTimeout(() => {
+      console.log('数据加载完毕！')
+      bscroll.finishPullUp()
+    }, 2000)
+    })
+
+  </script>
+</body>
+
+</html>
